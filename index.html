@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <title>2ch endless video player</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <link id="favicon" rel="shortcut icon" href="https://favicon.yandex.net/favicon/2ch.hk" />
+
+        <link rel="stylesheet" href="./assets/webm.css" />
+    </head>
+    <body>
+        <div class="choose">
+            <form class="choose_form">
+                <div>
+                    <label for="thread_url">Введи URL треда:</label>
+                    <input type="url" class="form__input" name="thread_url" required />
+                    <p class="form__note">Закрытые от РКН доски парситься не будут</p>
+                </div>
+
+                <button class="form__submit-btn" type="submit">Запустить!</button>
+            </form>
+
+            <p class="choose_bookmark">
+                <a href="#" title="Закладка" onclick="return false;">Webm-плеер</a>
+                <span>(перетащи её мышкой на панель закладок браузера, и сможешь открывать плеер прямо с любого webm-треда)</span>
+            </p>
+        </div>
+
+        <video class="video" hidden autoplay controls type="video/webm">
+            <p>Ваш браузер не поддерживает HTML5.</p>
+        </video>
+
+        <div class="controls" hidden>
+            <button class="controls__close" title="Закрыть тред">close</button>
+            <button class="controls__reload" title="Перезагрузка списка webm">reload</button>
+            <button class="controls__next" title="Следующая webm">next</button>
+        </div>
+
+        <script src="https://unpkg.com/kamina-js@1.3.2/dist/kamina.min.js" defer></script>
+        <script src="./assets/webm.js" defer></script>
+    </body>
+</html>
