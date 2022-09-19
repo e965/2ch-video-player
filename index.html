@@ -16,7 +16,13 @@
                 <div>
                     <label for="thread_url">Введи URL треда:</label>
                     <input type="url" class="form__input" name="thread_url" required />
-                    <p class="form__note">Закрытые от РКН доски парситься не будут</p>
+                    <p class="form__note form__note_1">
+                        для корректной работы необходимо
+                        <a href="https://cors-anywhere.herokuapp.com/corsdemo" target="_blank"
+                            >разрешить доступ к прокси</a
+                        >
+                    </p>
+                    <p class="form__note form__note_2">закрытые от РКН доски парситься не будут</p>
                 </div>
 
                 <button class="form__submit-btn" type="submit">Запустить!</button>
@@ -24,7 +30,10 @@
 
             <p class="choose_bookmark">
                 <a href="#" title="Закладка" onclick="return false;">Webm-плеер</a>
-                <span>(перетащи её мышкой на панель закладок браузера, и сможешь открывать плеер прямо с любого webm-треда)</span>
+                <span
+                    >(перетащи её мышкой на панель закладок браузера, и сможешь открывать плеер
+                    прямо с любого webm-треда)</span
+                >
             </p>
         </div>
 

@@ -26,20 +26,23 @@ body {
 }
 
 .choose_form .form__note {
+    margin-top: 5px;
+}
+
+.choose_form .form__note_2 {
     font-size: 0.7rem;
     color: #8f8f8f;
-    margin-top: 5px;
 }
 
 .choose_form .form__submit-btn {
     padding: 2.5px 5px;
-    margin-top: 10px;
+    margin-top: 20px;
 
     cursor: pointer;
 }
 
 .choose_bookmark {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .choose_bookmark a {
