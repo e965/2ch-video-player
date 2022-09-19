@@ -16,10 +16,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const appDataInit = {
         threadData: {},
         videos: [],
-        proxy: 'https://cors-anywhere.herokuapp.com/',
+        previousVideo: null,
+        proxy: 'https://crossorigin.me/',
     };
 
-    let appData = appDataInit;
+    let appData = { ...appDataInit };
 
     const inputs = $make.qs('input, button', ['a']);
 
@@ -52,12 +53,20 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const setRandomVideo = () => {
-        const { threadData, videos } = appData;
+        const { threadData, videos, previousVideo } = appData;
+
+        const nextVideo = videos[random(videos.length - 1)];
+
+        if (nextVideo === previousVideo && videos.length > 1) {
+            setRandomVideo();
+        }
 
         video.setAttribute(
             'src',
-            'https://' + threadData.host + '/' + threadData.board + '/src/' + threadData.thread_num + '/' + videos[random(videos.length - 1)]
+            'https://' + threadData.host + '/' + threadData.board + '/src/' + threadData.thread_num + '/' + nextVideo
         );
+
+        appData.previousVideo = nextVideo;
     };
 
     const showVideo = () => {
@@ -95,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const videos = [];
 
                 posts.forEach(post => {
-                    const postFiles = post.files;
+                    const postFiles = post.files || [];
 
                     for (let i = 0; i < postFiles.length; i++) {
                         const fileName = postFiles[i].name;
@@ -122,8 +131,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     hideVideo();
                 }
             })
-            .catch(e => {
-                alert('Возникла какая-то ошибка' + e);
+            .catch(error => {
+                console.error(error)
+                alert('Возникла какая-то ошибка' + error.message);
                 hideVideo();
             })
             .finally(() => {
@@ -152,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             threadURL = new URL($check.get('thread_url'));
-        } catch (e) {}
+        } catch (e) { }
 
         if (threadURL) {
             formInputs[0].value = threadURL;
@@ -163,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     bookmark.href = `javascript:`;
 
     controlsClose.onclick = () => {
-        appData = appDataInit;
+        appData = { ...appDataInit };
         hideVideo();
     };
     controlsReload.onclick = () => APIRequest();
