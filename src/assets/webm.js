@@ -61,10 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
             setRandomVideo();
         }
 
-        video.setAttribute(
-            'src',
-            'https://' + threadData.host + '/' + threadData.board + '/src/' + threadData.thread_num + '/' + nextVideo
-        );
+        video.setAttribute('src', 'https://' + threadData.host + '/' + threadData.board + '/src/' + threadData.thread_num + '/' + nextVideo);
 
         appData.previousVideo = nextVideo;
     };
@@ -132,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             })
             .catch(error => {
-                console.error(error)
+                console.error(error);
                 alert('Возникла какая-то ошибка' + error.message);
                 hideVideo();
             })
@@ -162,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             threadURL = new URL($check.get('thread_url'));
-        } catch (e) { }
+        } catch (e) {}
 
         if (threadURL) {
             formInputs[0].value = threadURL;
