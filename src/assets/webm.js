@@ -168,19 +168,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     void (() => {
-        let threadURL = '';
-
         try {
-            threadURL = new URL($check.get('thread_url'));
-        } catch (e) {}
+            let threadURL = new URL($check.get('thread_url')).href;
 
-        if (threadURL) {
-            formInputs[0].value = threadURL;
+            form[0].value = threadURL;
             work(threadURL);
-        }
+        } catch (error) {}
     })();
 
-    bookmark.href = `javascript:`;
+    const pageUrl = `${location.origin}${location.pathname}`;
+
+    bookmark.href = `javascript:let threadUrl=location.origin+location.pathname;window.open("${pageUrl}?thread_url="+threadUrl);`;
 
     controlsClose.onclick = () => {
         appData = { ...appDataInit };
