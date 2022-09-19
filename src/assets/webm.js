@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         threadData: {},
         videos: [],
         previousVideo: null,
-        proxy: 'https://crossorigin.me/',
+        proxy: 'https://cors-anywhere.herokuapp.com/',
     };
 
     let appData = { ...appDataInit };
@@ -61,7 +61,17 @@ document.addEventListener('DOMContentLoaded', () => {
             setRandomVideo();
         }
 
-        video.setAttribute('src', 'https://' + threadData.host + '/' + threadData.board + '/src/' + threadData.thread_num + '/' + nextVideo);
+        video.setAttribute(
+            'src',
+            'https://' +
+                threadData.host +
+                '/' +
+                threadData.board +
+                '/src/' +
+                threadData.thread_num +
+                '/' +
+                nextVideo
+        );
 
         appData.previousVideo = nextVideo;
     };
@@ -94,7 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         inputsAction('block');
 
-        fetch(`${proxy}https://${threadData.host}/${threadData.board}/res/${threadData.thread_num}.json`, { cache: 'no-store' })
+        fetch(
+            `${proxy}https://${threadData.host}/${threadData.board}/res/${threadData.thread_num}.json`,
+            { cache: 'no-store' }
+        )
             .then(r => r.json())
             .then(data => {
                 const posts = data.threads[0].posts;
